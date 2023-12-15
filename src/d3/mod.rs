@@ -132,11 +132,10 @@ fn get_gear_ratio(gear: &Gear, numbers_matrix: &Vec<Vec<Option<NumberInMatrix>>>
     );
 
     let _nums: HashMap<(usize, usize), i32> = adj_idxs
-        .clone()
-        .into_iter()
+        .iter()
         .filter_map(|(x, y)| {
             // filter only numbers adjacent numbers in matrix
-            let n: &NumberInMatrix = numbers_matrix[y][x].as_ref()?;
+            let n: &NumberInMatrix = numbers_matrix[*y][*x].as_ref()?;
             return Some((n.id, n.number));
         })
         .collect();
@@ -150,8 +149,8 @@ fn get_gear_ratio(gear: &Gear, numbers_matrix: &Vec<Vec<Option<NumberInMatrix>>>
 fn solve_part_2(input: &str) -> i32 {
     let (gears, numbers_matrix) = get_gears_numbers_and_matrix_from_str(input);
     let ratios = gears
-        .into_iter()
-        .map(|gear| get_gear_ratio(&gear, &numbers_matrix));
+        .iter()
+        .map(|gear| get_gear_ratio(gear, &numbers_matrix));
     return ratios.into_iter().sum();
 }
 
