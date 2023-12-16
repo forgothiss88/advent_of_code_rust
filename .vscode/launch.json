@@ -7,44 +7,17 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'advent_of_code_2023'",
-            "cargo": {
-                "args": [
-                    "build",
-                    "--bin=advent_of_code_2023",
-                    "--package=advent_of_code_2023"
-                ],
-                "filter": {
-                    "name": "advent_of_code_2023",
-                    "kind": "bin"
-                }
-            },
+            "name": "Debug",
+            "program": "${workspaceFolder}/target/debug/advent_of_code_2023",
             "args": [
-                "4"
+                "5"
             ],
             "cwd": "${workspaceFolder}",
-            "env": {
-                "RUST_BACKTRACE": "1"
+            "preLaunchTask": {
+                "type": "cargo",
+                "command": "build",
+                "label": "rust: cargo build"
             }
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug unit tests in executable 'advent_of_code_2023'",
-            "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--bin=advent_of_code_2023",
-                    "--package=advent_of_code_2023"
-                ],
-                "filter": {
-                    "name": "advent_of_code_2023",
-                    "kind": "bin"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
         }
     ]
 }
