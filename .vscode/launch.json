@@ -12,6 +12,9 @@
             "args": [
                 "5"
             ],
+            "sourceLanguages": [
+                "rust"
+            ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": {
                 "type": "cargo",

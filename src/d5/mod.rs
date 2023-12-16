@@ -1,7 +1,4 @@
-
 use regex::Regex;
-
-
 
 use std::path::Path;
 use std::{fs, vec};
@@ -44,19 +41,19 @@ humidity-to-location map:
 ";
 // write a regex to parse the input
 
-fn read_input(s: &str) -> (Vec<i32>, Vec<(&str, Vec<(i32, i32, i32)>)>) {
+fn read_input(s: &str) -> (Vec<i64>, Vec<(&str, Vec<(i64, i64, i64)>)>) {
     let seeds_re: Regex = Regex::new(r"(\d+)").unwrap();
     let map_re: Regex = Regex::new(
         r"(?:(?<map_name>\w+-\w+-\w+) map:)|(?:(?<dest_start>\d+) (?<source_start>\d+) (?<len>\d+))",
     )
     .unwrap();
-    let (seeds_s, maps_s) = s.split_once(r"\n").unwrap();
+    let (seeds_s, maps_s) = s.split_once("\n").unwrap();
     // let MAP_NAME_RE: Regex = Regex::new(r"^(\w+-\w+) map:\n").unwrap();
-    let seeds: Vec<i32> = seeds_re
+    let seeds: Vec<i64> = seeds_re
         .captures_iter(seeds_s)
-        .map(|cap| cap[0].parse::<i32>().unwrap())
+        .map(|cap| cap[0].parse::<i64>().unwrap())
         .collect();
-    let mut maps: Vec<(&str, Vec<(i32, i32, i32)>)> = vec![];
+    let mut maps: Vec<(&str, Vec<(i64, i64, i64)>)> = vec![];
     map_re
         .captures_iter(maps_s)
         .into_iter()
@@ -67,28 +64,28 @@ fn read_input(s: &str) -> (Vec<i32>, Vec<(&str, Vec<(i32, i32, i32)>)>) {
                 return Some(map_name.unwrap().as_str());
             }
             maps.last_mut().unwrap().1.push((
-                cap.name("source_start")
-                    .unwrap()
-                    .as_str()
-                    .parse::<i32>()
-                    .unwrap(),
                 cap.name("dest_start")
                     .unwrap()
                     .as_str()
-                    .parse::<i32>()
+                    .parse::<i64>()
                     .unwrap(),
-                cap.name("len").unwrap().as_str().parse::<i32>().unwrap(),
+                cap.name("source_start")
+                    .unwrap()
+                    .as_str()
+                    .parse::<i64>()
+                    .unwrap(),
+                cap.name("len").unwrap().as_str().parse::<i64>().unwrap(),
             ));
             return cur_map_name;
         });
     return (seeds, maps);
 }
 
-fn find_seed_position(seed: i32, maps: &Vec<(&str, Vec<(i32, i32, i32)>)>) -> i32 {
-    return maps.iter().fold(seed, |seed_position: i32, map| {
+fn find_seed_position(seed: i64, maps: &Vec<(&str, Vec<(i64, i64, i64)>)>) -> i64 {
+    return maps.iter().fold(seed, |seed_position: i64, map| {
         map.1
             .iter()
-            .find_map(|(source_start, dest_start, len)| {
+            .find_map(|(dest_start, source_start, len)| {
                 if *source_start <= seed_position && seed_position < *source_start + *len {
                     return Some(*dest_start + (seed_position - *source_start));
                 }
@@ -98,7 +95,7 @@ fn find_seed_position(seed: i32, maps: &Vec<(&str, Vec<(i32, i32, i32)>)>) -> i3
     });
 }
 
-fn solve_part_1(input: &str) -> i32 {
+fn solve_part_1(input: &str) -> i64 {
     let (seeds, maps) = read_input(input);
     return seeds
         .iter()
@@ -107,7 +104,7 @@ fn solve_part_1(input: &str) -> i32 {
         .unwrap();
 }
 
-fn solve_part_2(_input: &str) -> i32 {
+fn solve_part_2(_input: &str) -> i64 {
     0
 }
 
