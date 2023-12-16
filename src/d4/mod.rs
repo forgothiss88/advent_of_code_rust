@@ -1,10 +1,10 @@
-use core::num;
-use regex::Regex;
-use std::collections::{HashMap, HashSet};
-use std::iter::zip;
-use std::ops::{Deref, DerefMut};
+
+
+use std::collections::{HashSet};
+
+
 use std::path::Path;
-use std::{fs, iter, vec};
+use std::{fs};
 
 const DAY: i8 = 4;
 
@@ -21,7 +21,7 @@ fn read_input(s: &str) -> Vec<(HashSet<i32>, HashSet<i32>)> {
     return s
         .lines()
         .into_iter()
-        .map(|(line)| line.split_once("|").unwrap())
+        .map(|line| line.split_once("|").unwrap())
         .map(|(winning_numbers_s, my_numbers_s)| {
             (
                 winning_numbers_s

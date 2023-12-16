@@ -1,6 +1,6 @@
-use core::num;
+
 use regex::Regex;
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap};
 use std::path::Path;
 use std::{fs, vec};
 
@@ -52,7 +52,7 @@ fn get_gears_numbers_and_matrix_from_str(s: &str) -> (Vec<Gear>, Vec<Vec<Option<
 
     for (row_num, line) in lines.iter().enumerate() {
         let num_re = Regex::new(r"(\d+)").unwrap();
-        numbers.push((0..line.len()).map(|x| None).collect()); // initialize the row with no values
+        numbers.push((0..line.len()).map(|_x| None).collect()); // initialize the row with no values
         num_re.captures_iter(line).for_each(|cap| {
             let x = cap.get(0).unwrap().start();
             let curr_number = cap[0].parse::<i32>().unwrap();

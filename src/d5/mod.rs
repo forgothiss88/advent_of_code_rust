@@ -1,10 +1,10 @@
-use core::num;
+
 use regex::Regex;
-use std::collections::{HashMap, HashSet};
-use std::iter::zip;
-use std::ops::{Deref, DerefMut};
+
+
+
 use std::path::Path;
-use std::{fs, iter, vec};
+use std::{fs, vec};
 
 const DAY: i8 = 5;
 
@@ -107,7 +107,7 @@ fn solve_part_1(input: &str) -> i32 {
         .unwrap();
 }
 
-fn solve_part_2(input: &str) -> i32 {
+fn solve_part_2(_input: &str) -> i32 {
     0
 }
 
