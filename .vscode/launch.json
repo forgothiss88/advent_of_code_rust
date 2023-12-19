@@ -20,6 +20,9 @@
                 "type": "cargo",
                 "command": "build",
                 "label": "rust: cargo build"
+            },
+            "env": {
+                "RUST_BACKTRACE": "1"
             }
         }
     ]
