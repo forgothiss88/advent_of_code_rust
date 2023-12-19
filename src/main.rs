@@ -4,6 +4,7 @@ mod d2;
 mod d3;
 mod d4;
 mod d5;
+mod d6;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -20,6 +21,7 @@ fn main() {
         "3" => d3::solve(),
         "4" => d4::solve(),
         "5" => d5::solve(),
+        "6" => d6::solve(),
         // Add more days as you implement them
         _ => eprintln!("Day not implemented"),
     }

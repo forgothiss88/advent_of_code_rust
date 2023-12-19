@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/target/debug/advent_of_code_2023",
             "args": [
-                "5"
+                "6"
             ],
             "sourceLanguages": [
                 "rust"
